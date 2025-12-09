@@ -20,6 +20,10 @@ interface Products {
     name: string;
     price: number;
     description: string;
+    category: {
+        id: number;
+        name: string;
+    };
 }
 
 interface Props {
@@ -74,6 +78,7 @@ const handleDelete = (id: number) => {
                             <TableHead>Name</TableHead>
                             <TableHead>Price</TableHead>
                             <TableHead>Description</TableHead>
+                            <TableHead>Category</TableHead>
                             <TableHead class="text-center"> Action </TableHead>
                         </TableRow>
                     </TableHeader>
@@ -86,6 +91,11 @@ const handleDelete = (id: number) => {
                             <TableCell>{{ product.name }}</TableCell>
                             <TableCell>{{ product.price }}</TableCell>
                             <TableCell>{{ product.description }}</TableCell>
+                            <TableCell>{{
+                                product.category
+                                    ? product.category.name
+                                    : 'Uncategorized'
+                            }}</TableCell>
                             <TableCell class="space-x-2 text-center">
                                 <Link :href="`/products/${product.id}/edit`">
                                     <Button class="bg-slate-600">Edit</Button>

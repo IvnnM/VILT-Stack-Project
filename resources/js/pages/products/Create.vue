@@ -2,9 +2,29 @@
 import Button from '@/components/ui/button/Button.vue';
 import Input from '@/components/ui/input/Input.vue';
 import Label from '@/components/ui/label/Label.vue';
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, useForm } from '@inertiajs/vue3';
+
+interface Category {
+    id: number;
+    name: string;
+}
+
+interface Props {
+    categories: Category[];
+}
+
+const props = defineProps<Props>();
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -17,6 +37,7 @@ const form = useForm({
     name: '',
     price: '',
     description: '',
+    category_id: '',
 });
 
 const handleSubmit = () => {
@@ -49,6 +70,35 @@ const handleSubmit = () => {
                     />
                     <div class="text-xs text-red-600" v-if="form.errors.price">
                         {{ form.errors.price }}
+                    </div>
+                </div>
+                <div class="space-y-2">
+                    <Label for="Category">Category</Label>
+                    <Select v-model="form.category_id">
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select a category" />
+                        </SelectTrigger>
+                        <SelectContent align="end">
+                            <SelectGroup>
+                                <SelectLabel>Categories</SelectLabel>
+                                <SelectItem :value="null">
+                                    Uncategorized
+                                </SelectItem>
+                                <SelectItem
+                                    v-for="category in props.categories"
+                                    :key="category.id"
+                                    :value="category.id"
+                                >
+                                    {{ category.name }}
+                                </SelectItem>
+                            </SelectGroup>
+                        </SelectContent>
+                    </Select>
+                    <div
+                        class="text-xs text-red-600"
+                        v-if="form.errors.category_id"
+                    >
+                        {{ form.errors.category_id }}
                     </div>
                 </div>
                 <div class="space-y-2">
