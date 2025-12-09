@@ -14,7 +14,13 @@ import {
 import { dashboard } from '@/routes';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid, PackageSearch } from 'lucide-vue-next';
+import {
+    BookOpen,
+    Folder,
+    LayoutGrid,
+    PackageSearch,
+    Tags,
+} from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 
 const mainNavItems: NavItem[] = [
@@ -31,19 +37,19 @@ const mainNavItems: NavItem[] = [
     {
         title: 'Categories',
         href: '/categories',
-        icon: PackageSearch,
+        icon: Tags,
     },
 ];
 
 const footerNavItems: NavItem[] = [
     {
         title: 'Github Repo',
-        href: 'https://github.com/laravel/vue-starter-kit',
+        href: 'https://github.com/IvnnM/VILT-Stack-Project',
         icon: Folder,
     },
     {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#vue',
+        title: 'Developer',
+        href: 'http://www.linkedin.com/in/medrano-ivan',
         icon: BookOpen,
     },
 ];
