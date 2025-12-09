@@ -28,6 +28,11 @@ const mainNavItems: NavItem[] = [
         href: '/products',
         icon: PackageSearch,
     },
+    {
+        title: 'Categories',
+        href: '/categories',
+        icon: PackageSearch,
+    },
 ];
 
 const footerNavItems: NavItem[] = [
