@@ -30,6 +30,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/categories/{category}/edit',[App\Http\Controllers\CategoryController::class, 'edit'])->name('categories.edit');
     Route::put('/categories/{category}',[App\Http\Controllers\CategoryController::class, 'update'])->name('categories.update');
     Route::delete('/categories/{category}',[App\Http\Controllers\CategoryController::class, 'destroy'])->name('categories.destroy');
+
+    Route::get('/stocks',[App\Http\Controllers\StockController::class, 'index'])->name('stocks.index');
+    Route::get('/stocks/create',[App\Http\Controllers\StockController::class, 'create'])->name('stocks.create');
+    Route::post('/stocks',[App\Http\Controllers\StockController::class, 'store'])->name('stocks.store');
+    Route::get('/stocks/{stock}/edit',[App\Http\Controllers\StockController::class, 'edit'])->name('stocks.edit');
+    Route::put('/stocks/{stock}',[App\Http\Controllers\StockController::class, 'update'])->name('stocks.update');
+    Route::delete('/stocks/{stock}',[App\Http\Controllers\StockController::class, 'destroy'])->name('stocks.destroy');
 });
 
 

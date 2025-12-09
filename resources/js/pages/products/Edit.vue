@@ -7,7 +7,6 @@ import {
     SelectContent,
     SelectGroup,
     SelectItem,
-    SelectLabel,
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
@@ -81,9 +80,8 @@ const handleSubmit = () => {
                         <SelectTrigger>
                             <SelectValue placeholder="Select a category" />
                         </SelectTrigger>
-                        <SelectContent align="end">
+                        <SelectContent>
                             <SelectGroup>
-                                <SelectLabel>Categories</SelectLabel>
                                 <SelectItem :value="null">
                                     Uncategorized
                                 </SelectItem>

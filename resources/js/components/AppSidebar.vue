@@ -39,6 +39,11 @@ const mainNavItems: NavItem[] = [
         href: '/categories',
         icon: Tags,
     },
+    {
+        title: 'Stocks',
+        href: '/stocks',
+        icon: Tags,
+    },
 ];
 
 const footerNavItems: NavItem[] = [
