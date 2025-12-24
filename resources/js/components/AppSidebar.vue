@@ -44,6 +44,11 @@ const mainNavItems: NavItem[] = [
         href: '/stocks',
         icon: Tags,
     },
+    {
+        title: 'Suppliers',
+        href: '/suppliers',
+        icon: Tags,
+    },
 ];
 
 const footerNavItems: NavItem[] = [

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SupplierController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -37,6 +38,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/stocks/{stock}/edit',[App\Http\Controllers\StockController::class, 'edit'])->name('stocks.edit');
     Route::put('/stocks/{stock}',[App\Http\Controllers\StockController::class, 'update'])->name('stocks.update');
     Route::delete('/stocks/{stock}',[App\Http\Controllers\StockController::class, 'destroy'])->name('stocks.destroy');
+
+    Route::get('/suppliers',[SupplierController::class, 'index'])->name('suppliers.index');
+    Route::get('/suppliers/create',[SupplierController::class, 'create'])->name('suppliers.create');
+    Route::post('/suppliers',[SupplierController::class, 'store'])->name('suppliers.store');
+    Route::get('/suppliers/{supplier}/edit',[SupplierController::class, 'edit'])->name('suppliers.edit');
+    Route::put('/suppliers/{supplier}',[SupplierController::class, 'update'])->name('suppliers.update');
+    Route::delete('/suppliers/{supplier}',[SupplierController::class, 'destroy'])->name('suppliers.destroy');
 });
 
 
