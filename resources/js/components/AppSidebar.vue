@@ -49,6 +49,11 @@ const mainNavItems: NavItem[] = [
         href: '/suppliers',
         icon: Tags,
     },
+    {
+        title: 'Purchase Orders',
+        href: '/purchase-orders',
+        icon: BookOpen,
+    },
 ];
 
 const footerNavItems: NavItem[] = [

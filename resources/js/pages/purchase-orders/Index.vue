@@ -1,0 +1,108 @@
+<script setup lang="ts">
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import Button from '@/components/ui/button/Button.vue';
+import {
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from '@/components/ui/table';
+import AppLayout from '@/layouts/AppLayout.vue';
+import { type BreadcrumbItem } from '@/types';
+import { Head, Link, router, usePage } from '@inertiajs/vue3';
+import { Rocket } from 'lucide-vue-next';
+
+interface PurchaseOrder {
+    id: number;
+    supplier: {
+        id: number;
+        name: string;
+    };
+    order_date: string;
+    status: string;
+}
+
+interface Props {
+    purchaseOrders: PurchaseOrder[];
+}
+
+const props = defineProps<Props>();
+
+const breadcrumbs: BreadcrumbItem[] = [
+    {
+        title: 'Purchase Orders',
+        href: '/purchase-orders',
+    },
+];
+
+const page = usePage();
+
+const handleDelete = (id: number) => {
+    if (confirm('Do you want to delete this purchase order?')) {
+        router.delete(`/purchase-orders/${id}`);
+    }
+};
+</script>
+
+<template>
+    <Head title="Purchase Orders" />
+
+    <AppLayout :breadcrumbs="breadcrumbs">
+        <div
+            class="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4"
+        >
+            <Link :href="`/purchase-orders/create`">
+                <Button>Create a Purchase Order</Button>
+            </Link>
+
+            <div v-if="page.props.flash?.message" class="mb-4">
+                <Alert class="bg-blue-200">
+                    <Rocket class="h-4 w-4" />
+                    <AlertTitle>Heads up!</AlertTitle>
+                    <AlertDescription>
+                        {{ page.props.flash.message }}
+                    </AlertDescription>
+                </Alert>
+            </div>
+
+            <div>
+                <Table>
+                    <TableCaption>A list of your recent purchase orders.</TableCaption>
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead class="w-[100px]"> ID </TableHead>
+                            <TableHead>Supplier</TableHead>
+                            <TableHead>Order Date</TableHead>
+                            <TableHead>Status</TableHead>
+                            <TableHead class="text-center"> Action </TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody
+                        v-for="po in props.purchaseOrders"
+                        :key="po.id"
+                    >
+                        <TableRow>
+                            <TableCell>{{ po.id }}</TableCell>
+                            <TableCell>{{ po.supplier.name }}</TableCell>
+                            <TableCell>{{ po.order_date }}</TableCell>
+                            <TableCell>{{ po.status }}</TableCell>
+                            <TableCell class="space-x-2 text-center">
+                                <Link :href="`/purchase-orders/${po.id}/edit`">
+                                    <Button class="bg-slate-600">Edit</Button>
+                                </Link>
+                                <Button
+                                    class="bg-red-600"
+                                    @click="handleDelete(po.id)"
+                                    >Delete</Button
+                                >
+                            </TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
+            </div>
+        </div>
+    </AppLayout>
+</template>
