@@ -15,7 +15,6 @@ import { dashboard } from '@/routes';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
 import {
-    BookOpen,
     ClipboardList,
     Code,
     Folder,
@@ -37,39 +36,57 @@ const mainNavItems: NavItem[] = [
         icon: LayoutGrid,
     },
     {
-        title: 'Products',
-        href: '/products',
-        icon: PackageSearch,
+        title: 'Inventory',
+        icon: Folder,
+        children: [
+            {
+                title: 'Products',
+                href: '/products',
+                icon: PackageSearch,
+            },
+            {
+                title: 'Categories',
+                href: '/categories',
+                icon: Tags,
+            },
+            {
+                title: 'Stocks',
+                href: '/stocks',
+                icon: Warehouse,
+            },
+        ],
     },
     {
-        title: 'Categories',
-        href: '/categories',
-        icon: Tags,
-    },
-    {
-        title: 'Stocks',
-        href: '/stocks',
-        icon: Warehouse,
-    },
-    {
-        title: 'Suppliers',
-        href: '/suppliers',
+        title: 'Procurement',
         icon: Truck,
+        children: [
+            {
+                title: 'Suppliers',
+                href: '/suppliers',
+                icon: Truck,
+            },
+            {
+                title: 'Purchase Orders',
+                href: '/purchase-orders',
+                icon: ClipboardList,
+            },
+        ],
     },
     {
-        title: 'Purchase Orders',
-        href: '/purchase-orders',
-        icon: ClipboardList,
-    },
-    {
-        title: 'Customers',
-        href: '/customers',
-        icon: Users,
-    },
-    {
-        title: 'Sales Orders',
-        href: '/sales-orders',
+        title: 'Sales',
         icon: ShoppingCart,
+        children: [
+            {
+                title: 'Customers',
+                href: '/customers',
+                icon: Users,
+            },
+            {
+                title: 'Sales Orders',
+                href: '/sales-orders',
+                icon: ShoppingCart,
+            },
+        ],
     },
 ];
 

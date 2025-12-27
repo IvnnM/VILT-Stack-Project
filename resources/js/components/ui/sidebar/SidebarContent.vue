@@ -16,3 +16,25 @@ const props = defineProps<{
     <slot />
   </div>
 </template>
+
+<style scoped>
+[data-slot='sidebar-content']::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+[data-slot='sidebar-content']::-webkit-scrollbar-track {
+  background: transparent;
+}
+[data-slot='sidebar-content']::-webkit-scrollbar-thumb {
+  background-color: var(--sidebar-accent);
+  border-radius: 6px;
+}
+[data-slot='sidebar-content']::-webkit-scrollbar-thumb:hover {
+  background-color: var(--sidebar-accent-foreground);
+}
+/* For Firefox */
+[data-slot='sidebar-content'] {
+  scrollbar-width: thin;
+  scrollbar-color: var(--sidebar-accent) transparent;
+}
+</style>
