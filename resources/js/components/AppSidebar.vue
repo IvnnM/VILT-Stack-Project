@@ -16,10 +16,15 @@ import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/vue3';
 import {
     BookOpen,
+    ClipboardList,
+    Code,
     Folder,
+    Github,
     LayoutGrid,
     PackageSearch,
     Tags,
+    Truck,
+    Warehouse,
 } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 
@@ -42,17 +47,17 @@ const mainNavItems: NavItem[] = [
     {
         title: 'Stocks',
         href: '/stocks',
-        icon: Tags,
+        icon: Warehouse,
     },
     {
         title: 'Suppliers',
         href: '/suppliers',
-        icon: Tags,
+        icon: Truck,
     },
     {
         title: 'Purchase Orders',
         href: '/purchase-orders',
-        icon: BookOpen,
+        icon: ClipboardList,
     },
 ];
 
@@ -60,12 +65,12 @@ const footerNavItems: NavItem[] = [
     {
         title: 'Github Repo',
         href: 'https://github.com/IvnnM/VILT-Stack-Project',
-        icon: Folder,
+        icon: Github,
     },
     {
         title: 'Developer',
         href: 'http://www.linkedin.com/in/medrano-ivan',
-        icon: BookOpen,
+        icon: Code,
     },
 ];
 </script>
