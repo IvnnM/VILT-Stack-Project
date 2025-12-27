@@ -96,16 +96,18 @@ const handleDelete = (id: number) => {
                                     ? product.category.name
                                     : 'Uncategorized'
                             }}</TableCell>
-                            <TableCell class="space-x-2 text-center">
-                                <Link :href="`/products/${product.id}/edit`">
-                                    <Button size="icon" variant="secondary"><Pencil class="h-4 w-4" /></Button>
-                                </Link>
-                                <Button
-                                    size="icon"
-                                    variant="destructive"
-                                    @click="handleDelete(product.id)"
-                                    ><Trash2 class="h-4 w-4" /></Button
-                                >
+                            <TableCell>
+                                <div class="flex items-center justify-center space-x-2">
+                                    <Link :href="`/products/${product.id}/edit`">
+                                        <Button size="icon" variant="secondary"><Pencil class="h-4 w-4" /></Button>
+                                    </Link>
+                                    <Button
+                                        size="icon"
+                                        variant="destructive"
+                                        @click="handleDelete(product.id)"
+                                        ><Trash2 class="h-4 w-4"
+                                    /></Button>
+                                </div>
                             </TableCell>
                         </TableRow>
                     </TableBody>

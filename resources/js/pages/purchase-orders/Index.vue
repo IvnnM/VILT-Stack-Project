@@ -88,18 +88,20 @@ const handleDelete = (id: number) => {
                             <TableCell>{{ po.supplier.name }}</TableCell>
                             <TableCell>{{ po.order_date }}</TableCell>
                             <TableCell>{{ po.status }}</TableCell>
-                            <TableCell class="space-x-2 text-center">
-                                <Link :href="`/purchase-orders/${po.id}/edit`">
-                                    <Button size="icon" variant="secondary"
-                                        ><Pencil class="h-4 w-4"
+                            <TableCell>
+                                <div class="flex items-center justify-center space-x-2">
+                                    <Link :href="`/purchase-orders/${po.id}/edit`">
+                                        <Button size="icon" variant="secondary"
+                                            ><Pencil class="h-4 w-4"
+                                        /></Button>
+                                    </Link>
+                                    <Button
+                                        size="icon"
+                                        variant="destructive"
+                                        @click="handleDelete(po.id)"
+                                        ><Trash2 class="h-4 w-4"
                                     /></Button>
-                                </Link>
-                                <Button
-                                    size="icon"
-                                    variant="destructive"
-                                    @click="handleDelete(po.id)"
-                                    ><Trash2 class="h-4 w-4"
-                                /></Button>
+                                </div>
                             </TableCell>
                         </TableRow>
                     </TableBody>
