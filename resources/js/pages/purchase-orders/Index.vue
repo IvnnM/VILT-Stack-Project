@@ -13,7 +13,7 @@ import {
 import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link, router, usePage } from '@inertiajs/vue3';
-import { Rocket } from 'lucide-vue-next';
+import { Pencil, Rocket, Trash2 } from 'lucide-vue-next';
 
 interface PurchaseOrder {
     id: number;
@@ -70,7 +70,9 @@ const handleDelete = (id: number) => {
 
             <div>
                 <Table>
-                    <TableCaption>A list of your recent purchase orders.</TableCaption>
+                    <TableCaption
+                        >A list of your recent purchase orders.</TableCaption
+                    >
                     <TableHeader>
                         <TableRow>
                             <TableHead class="w-[100px]"> ID </TableHead>
@@ -80,10 +82,7 @@ const handleDelete = (id: number) => {
                             <TableHead class="text-center"> Action </TableHead>
                         </TableRow>
                     </TableHeader>
-                    <TableBody
-                        v-for="po in props.purchaseOrders"
-                        :key="po.id"
-                    >
+                    <TableBody v-for="po in props.purchaseOrders" :key="po.id">
                         <TableRow>
                             <TableCell>{{ po.id }}</TableCell>
                             <TableCell>{{ po.supplier.name }}</TableCell>
@@ -91,13 +90,16 @@ const handleDelete = (id: number) => {
                             <TableCell>{{ po.status }}</TableCell>
                             <TableCell class="space-x-2 text-center">
                                 <Link :href="`/purchase-orders/${po.id}/edit`">
-                                    <Button class="bg-slate-600">Edit</Button>
+                                    <Button size="icon" variant="secondary"
+                                        ><Pencil class="h-4 w-4"
+                                    /></Button>
                                 </Link>
                                 <Button
-                                    class="bg-red-600"
+                                    size="icon"
+                                    variant="destructive"
                                     @click="handleDelete(po.id)"
-                                    >Delete</Button
-                                >
+                                    ><Trash2 class="h-4 w-4"
+                                /></Button>
                             </TableCell>
                         </TableRow>
                     </TableBody>

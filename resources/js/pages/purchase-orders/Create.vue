@@ -23,6 +23,7 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { type BreadcrumbItem } from '@/types';
 import { Head, useForm } from '@inertiajs/vue3';
 import { ref } from 'vue';
+import { Trash2 } from 'lucide-vue-next';
 
 interface Supplier {
     id: number;
@@ -261,9 +262,10 @@ const handleSubmit = () => {
                                     </TableCell>
                                     <TableCell class="p-4 text-right">
                                         <Button
-                                            class="bg-red-600"
+                                            size="icon"
+                                            variant="destructive"
                                             @click="removeItem(index)"
-                                            >Remove</Button
+                                            ><Trash2 class="h-4 w-4" /></Button
                                         >
                                     </TableCell>
                                 </TableRow>
