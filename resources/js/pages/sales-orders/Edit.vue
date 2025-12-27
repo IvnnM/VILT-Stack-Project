@@ -255,6 +255,12 @@ const handleSubmit = () => {
                 >
                     <div class="p-4">
                         <h3 class="text-lg font-bold">Order Items</h3>
+                        <div
+                            class="text-xs text-red-600"
+                            v-if="form.errors.items"
+                        >
+                            {{ form.errors.items }}
+                        </div>
                     </div>
                     <div class="p-0">
                         <Table>
