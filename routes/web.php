@@ -6,7 +6,9 @@ use Inertia\Inertia;
 use Laravel\Fortify\Features;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PurchaseOrderController;
+use App\Http\Controllers\SalesOrderController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\CustomerController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -40,12 +42,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('/stocks/{stock}',[App\Http\Controllers\StockController::class, 'update'])->name('stocks.update');
     Route::delete('/stocks/{stock}',[App\Http\Controllers\StockController::class, 'destroy'])->name('stocks.destroy');
 
-    Route::get('/suppliers',[SupplierController::class, 'index'])->name('suppliers.index');
-    Route::get('/suppliers/create',[SupplierController::class, 'create'])->name('suppliers.create');
-    Route::post('/suppliers',[SupplierController::class, 'store'])->name('suppliers.store');
-    Route::get('/suppliers/{supplier}/edit',[SupplierController::class, 'edit'])->name('suppliers.edit');
-    Route::put('/suppliers/{supplier}',[SupplierController::class, 'update'])->name('suppliers.update');
-    Route::delete('/suppliers/{supplier}',[SupplierController::class, 'destroy'])->name('suppliers.destroy');
+    Route::resource('suppliers', SupplierController::class);
 
     Route::get('/purchase-orders', [PurchaseOrderController::class, 'index'])->name('purchase-orders.index');
     Route::get('/purchase-orders/create', [PurchaseOrderController::class, 'create'])->name('purchase-orders.create');
@@ -53,6 +50,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/purchase-orders/{purchaseOrder}/edit', [PurchaseOrderController::class, 'edit'])->name('purchase-orders.edit');
     Route::put('/purchase-orders/{purchaseOrder}', [PurchaseOrderController::class, 'update'])->name('purchase-orders.update');
     Route::delete('/purchase-orders/{purchaseOrder}', [PurchaseOrderController::class, 'destroy'])->name('purchase-orders.destroy');
+
+    Route::resource('customers', CustomerController::class);
+    Route::get('/sales-orders', [SalesOrderController::class, 'index'])->name('sales-orders.index');
+    Route::get('/sales-orders/create', [SalesOrderController::class, 'create'])->name('sales-orders.create');
+    Route::post('/sales-orders', [SalesOrderController::class, 'store'])->name('sales-orders.store');
+    Route::get('/sales-orders/{salesOrder}/edit', [SalesOrderController::class, 'edit'])->name('sales-orders.edit');
+    Route::put('/sales-orders/{salesOrder}', [SalesOrderController::class, 'update'])->name('sales-orders.update');
+    Route::delete('/sales-orders/{salesOrder}', [SalesOrderController::class, 'destroy'])->name('sales-orders.destroy');
 });
 
 

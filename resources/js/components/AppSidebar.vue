@@ -22,8 +22,10 @@ import {
     Github,
     LayoutGrid,
     PackageSearch,
+    ShoppingCart,
     Tags,
     Truck,
+    Users,
     Warehouse,
 } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
@@ -58,6 +60,16 @@ const mainNavItems: NavItem[] = [
         title: 'Purchase Orders',
         href: '/purchase-orders',
         icon: ClipboardList,
+    },
+    {
+        title: 'Customers',
+        href: '/customers',
+        icon: Users,
+    },
+    {
+        title: 'Sales Orders',
+        href: '/sales-orders',
+        icon: ShoppingCart,
     },
 ];
 
