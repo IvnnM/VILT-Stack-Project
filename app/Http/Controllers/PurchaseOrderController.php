@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\PurchaseOrder;
+use App\Models\Stock;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -70,7 +71,9 @@ class PurchaseOrderController extends Controller
             'items.*.unit_price' => 'required|numeric|min:0',
         ]);
 
-        DB::transaction(function () use ($data, $purchaseOrder) {
+        $originalStatus = $purchaseOrder->status;
+
+        DB::transaction(function () use ($data, $purchaseOrder, $originalStatus) {
             $purchaseOrder->update([
                 'supplier_id' => $data['supplier_id'],
                 'order_date' => $data['order_date'],
@@ -93,6 +96,14 @@ class PurchaseOrderController extends Controller
             $itemsToDelete = array_diff($existingItemIds, $newItemIds);
             if(!empty($itemsToDelete)){
                  $purchaseOrder->items()->whereIn('id', $itemsToDelete)->delete();
+            }
+
+            if ($originalStatus !== 'approved' && $data['status'] === 'approved') {
+                foreach ($data['items'] as $item) {
+                    $stock = Stock::firstOrNew(['product_id' => $item['product_id']]);
+                    $stock->quantity = ($stock->quantity ?? 0) + $item['quantity'];
+                    $stock->save();
+                }
             }
         });
 
