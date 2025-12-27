@@ -1,14 +1,37 @@
 <script setup lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
-import { dashboard } from '@/routes';
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+} from '@/components/ui/table';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
-import PlaceholderPattern from '../components/PlaceholderPattern.vue';
+
+interface LowStockItem {
+    id: number;
+    quantity: number;
+    product: {
+        id: number;
+        name: string;
+    };
+}
+
+interface Props {
+    totalProducts: number;
+    totalStock: number;
+    lowStockItems: LowStockItem[];
+}
+
+const props = defineProps<Props>();
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'Dashboard',
-        href: dashboard().url,
+        href: '/dashboard',
     },
 ];
 </script>
@@ -22,25 +45,44 @@ const breadcrumbs: BreadcrumbItem[] = [
         >
             <div class="grid auto-rows-min gap-4 md:grid-cols-3">
                 <div
-                    class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
+                    class="relative flex flex-col justify-between overflow-hidden rounded-xl border border-sidebar-border/70 p-4 dark:border-sidebar-border"
                 >
-                    <PlaceholderPattern />
+                    <h3 class="text-lg font-bold">Total Products</h3>
+                    <p class="text-4xl font-bold">{{ totalProducts }}</p>
                 </div>
                 <div
-                    class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
+                    class="relative flex flex-col justify-between overflow-hidden rounded-xl border border-sidebar-border/70 p-4 dark:border-sidebar-border"
                 >
-                    <PlaceholderPattern />
-                </div>
-                <div
-                    class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
-                >
-                    <PlaceholderPattern />
+                    <h3 class="text-lg font-bold">Total Stock</h3>
+                    <p class="text-4xl font-bold">{{ totalStock }}</p>
                 </div>
             </div>
             <div
-                class="relative min-h-[100vh] flex-1 rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border"
+                class="relative flex-1 rounded-xl border border-sidebar-border/70 p-4 md:min-h-min dark:border-sidebar-border"
             >
-                <PlaceholderPattern />
+                <h3 class="mb-4 text-lg font-bold">Low Stock Items</h3>
+                <Table>
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead>Product</TableHead>
+                            <TableHead>Quantity</TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        <TableRow v-if="lowStockItems.length === 0">
+                            <TableCell colspan="2" class="text-center"
+                                >No low stock items.</TableCell
+                            >
+                        </TableRow>
+                        <TableRow
+                            v-for="item in lowStockItems"
+                            :key="item.id"
+                        >
+                            <TableCell>{{ item.product.name }}</TableCell>
+                            <TableCell>{{ item.quantity }}</TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
             </div>
         </div>
     </AppLayout>
