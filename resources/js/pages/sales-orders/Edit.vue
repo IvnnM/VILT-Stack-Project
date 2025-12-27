@@ -70,7 +70,7 @@ const form = useForm({
     customer_id: props.salesOrder.customer_id,
     order_date: props.salesOrder.order_date,
     status: props.salesOrder.status,
-    items: props.salesOrder.items.map((item) => ({ ...item })),
+    items: props.salesOrder.items.map((item) => ({ ...item, unit_price: item.unit_price.toFixed(2) })),
     password: '',
 });
 

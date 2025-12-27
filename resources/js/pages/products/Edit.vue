@@ -30,7 +30,7 @@ const props = defineProps<{ product: Product; categories: Category[] }>();
 
 const form = useForm({
     name: props.product.name,
-    price: props.product.price,
+    price: props.product.price.toFixed(2),
     description: props.product.description,
     category_id: props.product.category_id ?? null,
 });
@@ -69,6 +69,7 @@ const handleSubmit = () => {
                         v-model="form.price"
                         type="number"
                         placeholder="Price"
+                        step="0.01"
                     />
                     <div class="text-xs text-red-600" v-if="form.errors.price">
                         {{ form.errors.price }}

@@ -89,7 +89,7 @@ const handleDelete = (id: number) => {
                         <TableRow>
                             <TableCell>{{ product.id }}</TableCell>
                             <TableCell>{{ product.name }}</TableCell>
-                            <TableCell>{{ product.price }}</TableCell>
+                            <TableCell>${{ product.price.toFixed(2) }}</TableCell>
                             <TableCell>{{ product.description }}</TableCell>
                             <TableCell>{{
                                 product.category

@@ -70,7 +70,7 @@ const form = useForm({
     supplier_id: props.purchaseOrder.supplier_id,
     order_date: props.purchaseOrder.order_date,
     status: props.purchaseOrder.status,
-    items: props.purchaseOrder.items.map((item) => ({ ...item })),
+    items: props.purchaseOrder.items.map((item) => ({ ...item, unit_price: item.unit_price.toFixed(2) })),
 });
 
 const newItem = ref({

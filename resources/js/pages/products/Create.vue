@@ -66,6 +66,7 @@ const handleSubmit = () => {
                         v-model="form.price"
                         type="number"
                         placeholder="Price"
+                        step="0.01"
                     />
                     <div class="text-xs text-red-600" v-if="form.errors.price">
                         {{ form.errors.price }}
